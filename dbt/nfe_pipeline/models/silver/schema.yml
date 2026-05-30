@@ -1,0 +1,37 @@
+version: 2
+
+models:
+  - name: silver_nfe_itens_calculado
+    description: "Itens de NF-e com impostos recalculados e flags de inconsistência"
+    columns:
+      - name: chave_acesso
+        description: "Chave de acesso da NF-e (44 dígitos)"
+        tests:
+          - not_null
+      - name: valor_produto
+        description: "Valor total do item (quantidade × valor unitário)"
+        tests:
+          - not_null
+      - name: cfop_categoria
+        tests:
+          - not_null
+          - accepted_values:
+              values:
+                - 'Entrada Estadual'
+                - 'Entrada Interestadual'
+                - 'Entrada Exterior'
+                - 'Saída Estadual'
+                - 'Saída Interestadual'
+                - 'Saída Exterior'
+                - 'CFOP Desconhecido'
+
+  - name: silver_nfe_resumo
+    description: "Uma linha por NF-e com totais fiscais e flags consolidadas"
+    columns:
+      - name: chave_acesso
+        tests:
+          - not_null
+          - unique
+      - name: total_produtos
+        tests:
+          - not_null

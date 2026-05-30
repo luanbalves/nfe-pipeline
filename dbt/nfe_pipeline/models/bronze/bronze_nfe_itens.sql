@@ -1,0 +1,21 @@
+SELECT
+    id,
+    chave_acesso,
+    num_item,
+    codigo_produto,
+    descricao_produto,
+    ncm,
+    cfop,
+    unidade,
+    quantidade,
+    valor_unitario,
+    valor_produto,
+    icms_bc,
+    icms_aliquota,
+    icms_valor_declarado,
+    pis_aliquota,
+    pis_valor_declarado,
+    cofins_aliquota,
+    cofins_valor_declarado,
+    carregado_em
+FROM bronze.nfe_itens

@@ -1,0 +1,47 @@
+version: 2
+
+models:
+  - name: gold_impostos_por_fornecedor
+    description: >
+      Consolidado fiscal por fornecedor (emitente).
+      Base para o dashboard de fornecedores e análise de carga tributária.
+    columns:
+      - name: emit_cnpj
+        tests:
+          - not_null
+          - unique
+      - name: total_mercadorias
+        tests:
+          - not_null
+      - name: pct_carga_tributaria
+        description: "Percentual da carga tributária (ICMS+PIS+COFINS) sobre o valor das mercadorias"
+
+  - name: gold_alertas_inconsistencia
+    description: >
+      Lista priorizada de itens com divergência fiscal.
+      Ordenada por severidade e valor da divergência.
+      Entrega direta para revisão do contador.
+    columns:
+      - name: prioridade
+        tests:
+          - not_null
+      - name: severidade
+        tests:
+          - accepted_values:
+              values: ['ALTA', 'MÉDIA', 'BAIXA']
+
+  - name: gold_evolucao_mensal
+    description: "Série histórica mensal de volume e impostos"
+    columns:
+      - name: ano_mes
+        tests:
+          - not_null
+          - unique
+
+  - name: gold_analise_cfop
+    description: "Distribuição de operações fiscais por CFOP"
+    columns:
+      - name: cfop
+        tests:
+          - not_null
+          - unique

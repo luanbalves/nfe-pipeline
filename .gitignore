@@ -1,0 +1,16 @@
+.env
+__pycache__/
+*.pyc
+*.db
+*.duckdb
+logs/
+airflow/logs/
+airflow/plugins/
+.DS_Store
+dbt/target/
+dbt/dbt_packages/
+notebooks/.ipynb_checkpoints/
+data/raw/
+data/samples/*.xml
+venv/
+.venv/
